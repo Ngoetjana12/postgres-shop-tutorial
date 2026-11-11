@@ -179,3 +179,27 @@ FROM order_items o, customers c, products p, orders oo
 WHERE c.customer_id = oo.customer_id
 AND p.product_id = o.product_id;
 
+SELECT product_id, product_name, price
+FROM products
+WHERE product_name = 'USB-C Cable';
+
+
+UPDATE products
+SET price = 109.50
+WHERE product_name = 'USB-C Cable';
+
+
+ALTER TABLE customers
+ADD COLUMN city VARCHAR(80);
+
+UPDATE customers
+SET city = 'Pretoria'
+WHERE first_name = 'Aisha';
+
+SELECT first_name, last_name
+FROM customers
+WHERE city = 'Pretoria';
+
+
+
+
