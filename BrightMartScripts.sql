@@ -18,10 +18,8 @@ INSERT INTO customers(first_name, last_name, email, phone)VALUES
 ('Tefo', 'Mach', 'tefo@example', '0720000005'),
 ('Thabi', 'Xulu', 'thabi@example', '0720000006');
 
-SELECT customer_id, first_name, last_name
-FROM customers
-ORDER BY customer_id;
-
+SELECT first_name, last_name, email
+FROM customers;
 
 
 CREATE TABLE products(
@@ -39,11 +37,20 @@ INSERT INTO products(product_name, description, price, stock_quantity)VALUES
 ('USB-C Cable', 'One metre USB-C cable', 99.50, 50),
 ('PlayStation 5', 'Gaming console', 12499.99, 7),
 ('GTA6', 'Playstation game', 1549.99, 3000),
-('HP Laptop', 'Portable eletronic', 10249.99, 13),
+('HP Laptop', 'Portable eletronic', 10249.99, 13);
 
-SELECT * FROM products;
+SELECT product_name AS product,
+		price AS selling_price
+FROM products
+WHERE price > 300 AND stock_quantity = 15;
 
+SELECT product_name
+FROM products
+WHERE product_name LIKE '%USB%';
 
+SELECT product_name, stock_quantity, price
+FROM products
+ORDER BY stock_quantity ASC, price DESC;
 
 CREATE TABLE orders(
 order_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -66,7 +73,13 @@ INSERT INTO orders(customer_id, status)VALUES
 (5, 'PAID'),
 (6, 'PAID');
 
-SELECT * FROM orders;
+SELECT order_id, customer_id
+FROM orders
+WHERE status = 'PENDING';
+
+SELECT order_id, status
+FROM orders
+WHERE status IN ('PAID', 'SHIPPED');
 
 
 
@@ -97,6 +110,9 @@ INSERT INTO order_items(order_id, product_id, quantity, unit_price)VALUES
 (1, 1, 2, 249.99),
 (1, 3, 1, 99.50),
 (2, 2, 1, 899.00),
+(3, 4, 4, 10500.99),
+(6, 6, 10, 7000.00),
+(5, 5, 1500, 999.99);
 
 
 SELECT * FROM customers;
