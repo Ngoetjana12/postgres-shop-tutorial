@@ -120,6 +120,62 @@ SELECT * FROM products;
 SELECT * FROM orders;
 SELECT * FROM order_items;
 
+SELECT
+    orders.order_id,
+    customers.first_name,
+    customers.last_name,
+    orders.status
+FROM orders, customers
+WHERE orders.customer_id = customers.customer_id;
 
 
+SELECT
+    o.order_id,
+    c.first_name,
+    c.last_name,
+    o.status
+FROM orders o, customers c
+WHERE o.customer_id = c.customer_id;
+
+
+SELECT
+    o.order_id,
+    c.first_name,
+    p.product_name,
+    oi.quantity,
+    oi.unit_price
+FROM orders o, customers c, order_items oi, products p
+WHERE o.customer_id = c.customer_id
+AND o.order_id = oi.order_id
+AND oi.product_id = p.product_id;
+
+SELECT
+    c.customer_id,
+    c.first_name,
+    c.last_name,
+    o.order_id
+FROM customers c, orders o
+WHERE c.customer_id = o.customer_id
+ORDER BY c.customer_id;
+
+SELECT
+	order_id, first_name, last_name
+FROM orders, customers
+WHERE orders.customer_id= customers.customer_id;
+
+SELECT
+	p.product_name, p.description, oi.product_id, quantity
+FROM products p, order_items oi
+WHERE p.product_id = oi.product_id;
+
+SELECT * FROM customers;
+
+SELECT
+	o.order_id,
+	c.email,
+	p.product_name,
+	o.quantity
+FROM order_items o, customers c, products p, orders oo
+WHERE c.customer_id = oo.customer_id
+AND p.product_id = o.product_id;
 
